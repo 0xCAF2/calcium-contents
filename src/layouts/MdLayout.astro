@@ -9,5 +9,19 @@ const { title, description } = Astro.props.frontmatter
 ---
 
 <Layout title={`${title}｜カルシウム学習サイト`} description={description}>
-  <slot />
+  <main>
+    <slot />
+  </main>
 </Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+</style>

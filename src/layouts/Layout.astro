@@ -20,6 +20,19 @@ const { title, description } = Astro.props
   <body>
     <slot />
   </body>
+  <script>
+    window.addEventListener('hashchange', () => {
+      document
+        .querySelectorAll('.hash')
+        .forEach((el) => el.classList.remove('hash'))
+      const hash = window.location.hash.replace('#', '')
+      if (!hash) return
+      const blockquote = document.querySelector(`a[name="${hash}"]`)
+        ?.parentElement?.nextElementSibling?.nextElementSibling
+      if (!blockquote) return
+      blockquote.classList.add('hash')
+    })
+  </script>
 </html>
 <style is:global>
   html {
@@ -34,9 +47,20 @@ const { title, description } = Astro.props
     width: 100%;
   }
   a:link {
-    color: skyblue;
+    color: #00caf2;
   }
   a:visited {
     color: orange;
+  }
+  blockquote {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #333;
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: #00caf2;
+  }
+  .hash {
+    border-left-color: orange;
   }
 </style>
